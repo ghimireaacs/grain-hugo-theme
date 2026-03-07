@@ -1,3 +1,12 @@
 name        = "grain-resume"
+license     = "MIT"
+licenselink = "https://github.com/ghimireaacs/grain-hugo-theme/blob/main/LICENSE"
 description = "Dark grain card layout — single-page resume/portfolio theme for Hugo"
-version     = "1.0.0"
+homepage    = "https://github.com/ghimireaacs/grain-hugo-theme"
+demosite    = "https://prashantghimire.dev"
+tags        = ["portfolio", "resume", "single-page"]
+features    = ["dark-theme", "responsive", "data-driven", "no-javascript-framework"]
+
+[author]
+  name     = "Prashant Ghimire"
+  homepage = "https://prashantghimire.dev"

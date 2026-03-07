@@ -2,6 +2,8 @@
 
 A dark, single-page Hugo theme for IT/tech portfolios and resumes. Floating card layout, static grain background, sticky two-column panel, tabbed skills section.
 
+![screenshot](https://raw.githubusercontent.com/ghimireaacs/grain-hugo-theme/main/images/screenshot.jpg)
+
 ---
 
 ## Requirements
