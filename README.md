@@ -41,7 +41,7 @@ hugo server --themesDir ../..
 Add the theme as a git submodule inside your Hugo site:
 
 ```bash
-git submodule add https://github.com/ghimireaacs/grain-resume themes/grain-resume
+git submodule add https://github.com/ghimireaacs/grain-hugo-theme themes/grain-resume
 ```
 
 Then set the theme in your `hugo.toml`:
