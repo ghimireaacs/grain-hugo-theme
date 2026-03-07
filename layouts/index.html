@@ -1,0 +1,133 @@
+{{ define "main" }}
+{{ $nameParts := split .Site.Params.name " " }}
+{{ $initials := printf "%s%s" (substr (index $nameParts 0) 0 1) (substr (index $nameParts 1) 0 1) }}
+<div class="page">
+  <div class="card">
+
+    <!-- ── LEFT PANEL ── -->
+    <aside class="panel">
+      <div class="panel-inner">
+
+        <div>
+          {{ if .Site.Params.avatar }}
+          <img src="{{ .Site.Params.avatar }}" alt="{{ .Site.Params.name }}" class="avatar">
+          {{ else }}
+          <div class="avatar">{{ $initials }}</div>
+          {{ end }}
+          <h1>{{ index $nameParts 0 }}<br>{{ index $nameParts 1 }}</h1>
+          <p class="role">{{ .Site.Params.role }}</p>
+          <span class="avail">{{ .Site.Params.available }}</span>
+        </div>
+
+        <p class="bio">{{ .Site.Params.bio }}</p>
+
+        <div class="pills">
+          <a href="mailto:{{ .Site.Params.email }}" class="pill">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 6.5l7.5 5 7.5-5M3 5h14a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
+            {{ .Site.Params.email }}
+          </a>
+          <a href="{{ .Site.Params.linkedin }}" target="_blank" class="pill">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.779 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"/></svg>
+            LinkedIn
+          </a>
+          <a href="{{ .Site.Params.github }}" target="_blank" class="pill">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <nav class="side-nav">
+          <a href="#skills" class="active">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#projects">Projects</a>
+        </nav>
+
+      </div>
+    </aside>
+
+    <!-- ── RIGHT CONTENT ── -->
+    <main class="content">
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="sec-head">
+          <span class="label">Skills</span>
+          <div class="tab-toggle">
+            <button class="ttab active" data-tab="support">IT Support</button>
+            <button class="ttab" data-tab="homelab">Homelab</button>
+          </div>
+        </div>
+
+        <div class="tab-content active" id="tab-support">
+          <div class="skill-rows">
+            {{ range .Site.Data.skills_support }}
+            <div class="skill-row">
+              <span class="scat">{{ .category }}</span>
+              <span class="sval">{{ .skills }}</span>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-homelab">
+          <div class="skill-rows">
+            {{ range .Site.Data.skills_homelab }}
+            <div class="skill-row">
+              <span class="scat">{{ .category }}</span>
+              <span class="sval mono">{{ .skills }}</span>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <span class="label">Experience</span>
+        {{ range .Site.Data.experience }}
+        <div class="exp-entry">
+          <div class="exp-head">
+            <span class="exp-title">{{ .title }}</span>
+            <span class="exp-date">{{ .date }}</span>
+          </div>
+          <ul>
+            {{ range .items }}<li>{{ . }}</li>{{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </section>
+
+      <!-- CERTIFICATIONS -->
+      <section id="certifications">
+        <span class="label">Certifications &amp; Education</span>
+        <div class="cert-rows">
+          {{ range .Site.Data.certifications }}
+          <div class="cert-row">
+            <span>{{ .name }}</span>
+            <span>{{ .org }}</span>
+          </div>
+          {{ end }}
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <span class="label">Projects</span>
+        <div class="project-list">
+          {{ range .Site.Data.projects }}
+          <div class="project-item">
+            <div class="project-name">{{ .name }}</div>
+            <p>{{ .description }}</p>
+            <div class="tags">
+              {{ range .tags }}<span>{{ . }}</span>{{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+{{ end }}

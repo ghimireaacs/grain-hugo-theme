@@ -1,0 +1,18 @@
+# Each entry: title + date header, followed by bullet points (items list).
+# date is a plain string — use whatever format fits your situation.
+# Entries render in the order listed here, top to bottom.
+
+- title: IT Lab & Home Infrastructure
+  date: Ongoing
+  items:
+    - "Windows Server environment — AD DS, DNS, DHCP, Group Policy, 50+ simulated users"
+    - "Worked through 40+ simulated service desk tickets covering access, connectivity, and account issues"
+    - "NTFS permissions, shared drives, role-based access — documented as runbooks"
+    - "3-node k3s cluster running 15+ self-hosted services with full monitoring stack"
+
+- title: Customer Service — Retail
+  date: "2021 – 2024"
+  items:
+    - "100–150 customer interactions per shift in a high-volume environment"
+    - "Escalation handling and complaint resolution under time pressure"
+    - "Clear communication and patience under pressure — maps directly to help desk work"

@@ -1,0 +1,14 @@
+# Each project renders as a card: name heading, description paragraph, tag chips.
+# tags renders as small monospace chips — keep them short (one word or hyphenated).
+
+- name: Home Network
+  description: "VLAN-segmented network built on OPNsense — 802.1Q trunking on a managed switch, Pi-hole DNS, separate VLANs for servers, personal devices, IoT, and guest traffic. Mirrors enterprise segmentation patterns."
+  tags: [OPNsense, VLANs, 802.1Q, Pi-hole]
+
+- name: Self-Hosted Platform
+  description: "15+ services running on a 3-node k3s cluster. SSO via Authentik, Traefik reverse proxy, Terraform-managed infrastructure, valid SSL across everything on a custom domain."
+  tags: [k3s, Traefik, Authentik, Terraform, Helm]
+
+- name: Monitoring Stack
+  description: "Full observability across the homelab — Prometheus metrics, Grafana dashboards, Loki log aggregation, Alertmanager rules. Persistent NFS-backed volumes."
+  tags: [Prometheus, Grafana, Loki, Alertmanager]

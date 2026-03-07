@@ -1,0 +1,17 @@
+# IT Support tab — category is the left column label, skills is free text on the right.
+# Use · (middle dot, U+00B7) to separate items within a skill value.
+
+- category: Windows & Desktop
+  skills: "Windows 10/11 · Windows Server · OS imaging · Hardware & printer support"
+
+- category: Microsoft Cloud
+  skills: "Microsoft 365 · Exchange Online · Azure AD / Entra · Intune / MDM · MFA · Conditional Access"
+
+- category: Active Directory
+  skills: "AD DS · DNS · DHCP · Group Policy · NTFS permissions · User & group management"
+
+- category: Networking
+  skills: "TCP/IP · VPN · RDP · Remote support tools · ping / tracert / nslookup"
+
+- category: Support Practice
+  skills: "ITIL fundamentals · Ticket management · SLA awareness · Escalation · Documentation"

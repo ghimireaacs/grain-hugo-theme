@@ -1,0 +1,17 @@
+# Homelab tab — rendered in monospace. Same structure as skills_support.yaml.
+# Suits tool names, CLI commands, and stack components.
+
+- category: Containers
+  skills: "Docker · k3s · Helm · docker compose"
+
+- category: Networking
+  skills: "OPNsense · VLANs · 802.1Q · Pi-hole · Traefik"
+
+- category: Auth & Access
+  skills: "Authentik · SSO · OAuth2 · SSL / Let's Encrypt"
+
+- category: Observability
+  skills: "Prometheus · Grafana · Loki · Alertmanager"
+
+- category: IaC
+  skills: "Terraform · Ansible · Git"

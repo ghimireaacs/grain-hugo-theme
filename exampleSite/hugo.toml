@@ -1,0 +1,16 @@
+baseURL = "https://yoursite.com/"
+languageCode = "en-us"
+title = "Alex Rivera"
+theme = "grain-resume"
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  name      = "Alex Rivera"
+  role      = "IT Support Technician"
+  available = "Open to work"
+  bio       = "I've spent three years in fast-paced customer-facing roles that built patience, communication, and calm under pressure. I've since added the technical depth — Windows Server, Active Directory, Microsoft 365. I run a homelab because I find infrastructure genuinely interesting, not because a job asked me to."
+  email     = "alex@example.com"
+  linkedin  = "https://linkedin.com/in/alex-rivera"
+  github    = "https://github.com/alex-rivera"
+  # avatar      = "/img/photo.jpg"  # uncomment and add your photo to static/img/
+  # description = "IT Support Technician based in Sydney — Microsoft 365, Active Directory, Windows Server"
