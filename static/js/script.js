@@ -11,7 +11,7 @@ document.querySelectorAll('.ttab').forEach(btn => {
 
 // Highlight active sidebar nav on scroll
 const sections = document.querySelectorAll('section[id], .intro');
-const navLinks = document.querySelectorAll('.sidebar-nav a');
+const navLinks = document.querySelectorAll('.side-nav a');
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {

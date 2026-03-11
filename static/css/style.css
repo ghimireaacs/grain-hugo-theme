@@ -1,15 +1,19 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --page-bg:   #0c0a09;
-  --card-bg:   #181512;
-  --panel-bg:  #141210;
-  --text:      #f0ede8;
-  --mid:       rgba(240,237,232,0.55);
-  --muted:     rgba(240,237,232,0.28);
-  --border:    rgba(240,237,232,0.07);
-  --accent:    #c45c1a;
-  --radius:    14px;
+  --page-bg:      #0c0a09;
+  --card-bg:      #181512;
+  --panel-bg:     #141210;
+  --text:         #f0ede8;
+  --mid:          rgba(240,237,232,0.55);
+  --muted:        rgba(240,237,232,0.28);
+  --border:       rgba(240,237,232,0.07);
+  --accent:       #c45c1a;   /* warm orange — IT Support */
+  --accent-hl:    #0e7490;   /* teal — Homelab */
+  --hl-text:      #7dd3fc;   /* sky blue — homelab skill values */
+  --hl-row-bg:    rgba(14,116,144,0.05);
+  --hl-border:    rgba(14,116,144,0.3);
+  --radius:       14px;
 }
 
 html { scroll-behavior: smooth; }
@@ -253,7 +257,8 @@ section:last-child {
 }
 
 .ttab:hover { color: var(--text); }
-.ttab.active { background: var(--accent); color: white; }
+.ttab.active                        { background: var(--accent);    color: white; }
+.ttab[data-tab="homelab"].active    { background: var(--accent-hl); color: white; }
 
 .tab-content { display: none; }
 .tab-content.active { display: block; }
@@ -288,9 +293,18 @@ section:last-child {
 }
 
 .sval.mono {
-  font-family: 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 13px;
-  color: var(--text);
+  font-weight: 400;
+  color: var(--hl-text);
+  line-height: 1.65;
+}
+
+/* ── HOMELAB TAB — distinct aesthetic ── */
+
+#tab-homelab .scat {
+  color: var(--accent-hl);
+  opacity: 0.85;
 }
 
 /* ── EXPERIENCE ── */
@@ -400,11 +414,11 @@ section:last-child {
 }
 
 .tags span {
-  font-family: 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  color: var(--muted);
-  background: rgba(240,237,232,0.04);
-  border: 1px solid var(--border);
+  color: var(--accent-hl);
+  background: rgba(14,116,144,0.07);
+  border: 1px solid rgba(14,116,144,0.2);
   padding: 3px 9px;
   border-radius: 4px;
 }
