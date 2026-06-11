@@ -1,26 +1,18 @@
-// Tab toggle
-document.querySelectorAll('.ttab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const target = btn.dataset.tab;
-    document.querySelectorAll('.ttab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + target).classList.add('active');
+// Reveal sections as they enter the viewport.
+// Classes are added here so the no-JS experience is fully static.
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const revealTargets = document.querySelectorAll('main section, .site-foot');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+
+  revealTargets.forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
   });
-});
-
-// Highlight active sidebar nav on scroll
-const sections = document.querySelectorAll('section[id], .intro');
-const navLinks = document.querySelectorAll('.side-nav a');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
-      });
-    }
-  });
-}, { threshold: 0.3 });
-
-sections.forEach(s => observer.observe(s));
+}

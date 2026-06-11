@@ -1,0 +1,14 @@
+intro: "A short paragraph that frames the lab: what it is, how long it has run, and why it exists. One or two sentences of plain context beats a wall of tool names."
+
+items:
+  - name: Network segmentation
+    what: "What is actually running, described in one or two sentences a non-specialist can follow. End with what it shows about you, written as plain prose."
+    stack: [OPNsense, VLANs, Pi-hole]
+
+  - name: Compute & platform
+    what: "Hypervisor, cluster, services. Numbers help: node counts, service counts, provisioning time."
+    stack: [Proxmox, k3s, Docker]
+
+  - name: Observability
+    what: "Where the metrics and logs go and how alerting works."
+    stack: [Prometheus, Grafana, Loki]

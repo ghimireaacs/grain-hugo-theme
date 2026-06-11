@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.Language.LanguageCode | default "en" }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ .Site.Params.name }}</title>
+  <title>{{ .Site.Params.name }}{{ with .Site.Params.role }} · {{ . }}{{ end }}</title>
   <meta name="description" content="{{ .Site.Params.description | default .Site.Params.role }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . | relURL }}">{{ end }}
 
   <!-- Open Graph / LinkedIn / Facebook -->
   <meta property="og:type"        content="profile">
   <meta property="og:url"         content="{{ .Site.BaseURL }}">
-  <meta property="og:title"       content="{{ .Site.Params.name }} — {{ .Site.Params.role }}">
+  <meta property="og:title"       content="{{ .Site.Params.name }} · {{ .Site.Params.role }}">
   <meta property="og:description" content="{{ .Site.Params.description | default .Site.Params.bio }}">
   {{ with .Site.Params.ogImage }}
   <meta property="og:image"       content="{{ . | absURL }}">
@@ -17,14 +19,14 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="{{ .Site.Params.name }} — {{ .Site.Params.role }}">
+  <meta name="twitter:title"       content="{{ .Site.Params.name }} · {{ .Site.Params.role }}">
   <meta name="twitter:description" content="{{ .Site.Params.description | default .Site.Params.bio }}">
   {{ with .Site.Params.ogImage }}
   <meta name="twitter:image"       content="{{ . | absURL }}">
   {{ end }}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=Playfair+Display:wght@900&family=Nothing+You+Could+Do:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
 <body>

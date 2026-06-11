@@ -1,0 +1,17 @@
+# One merged table. category is the mono left column, skills is free text.
+# Separate items with · (middle dot, U+00B7).
+
+- category: Windows & Desktop
+  skills: "Windows 10/11 · Windows Server · driver troubleshooting · printer support · RDP"
+
+- category: Microsoft Cloud
+  skills: "Microsoft 365 · Exchange Online · Intune / MDM · Entra ID · MFA"
+
+- category: Networking
+  skills: "TCP/IP · VLANs · firewalls · DNS / DHCP · VPN"
+
+- category: Linux & Infra
+  skills: "Ubuntu Server · SSH · Docker · Kubernetes · virtualisation"
+
+- category: Scripting & ITSM
+  skills: "PowerShell · Bash · Git · ITIL fundamentals · documentation"

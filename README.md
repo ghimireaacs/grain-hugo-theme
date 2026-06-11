@@ -1,6 +1,6 @@
 # grain-resume
 
-A dark, single-page Hugo theme for IT/tech portfolios and resumes. Floating card layout, static grain background, sticky two-column panel, tabbed skills section.
+A single-page Hugo resume theme typeset like a printed CV. Warm paper grain, serif/sans masthead, numbered sections, timeline experience, a proof-of-work lab section, and a real print stylesheet. Data-driven: all content lives in `data/*.yaml` and `hugo.toml`.
 
 ![screenshot](https://raw.githubusercontent.com/ghimireaacs/grain-hugo-theme/main/images/screenshot.jpg)
 
@@ -22,11 +22,10 @@ exampleSite/
 ├── netlify.toml                   # Netlify build config
 ├── content/_index.md              # required by Hugo — leave empty
 └── data/
-    ├── skills_support.yaml        # IT Support tab
-    ├── skills_homelab.yaml        # Homelab tab (monospace)
-    ├── experience.yaml            # work history
-    ├── certifications.yaml        # certs and education
-    └── projects.yaml              # project cards
+    ├── experience.yaml            # work history (timeline)
+    ├── lab.yaml                   # homelab / proof-of-work section
+    ├── skills.yaml                # one merged skills table
+    └── certifications.yaml        # certs and education
 ```
 
 To run the example locally:
@@ -58,7 +57,7 @@ theme = "grain-resume"
 
 ### `hugo.toml` params
 
-All personal content is set in `[params]` — the theme templates contain no hardcoded content.
+All personal content is set in `[params]`. The theme templates contain no hardcoded content.
 
 ```toml
 baseURL = "https://yoursite.com/"
@@ -68,16 +67,22 @@ theme = "grain-resume"
 disableKinds = ["taxonomy", "term"]
 
 [params]
-  name      = "Your Name"           # rendered as two-line heading — expects "First Last"
-  role      = "Job Title"           # shown below name in muted text
-  available = "Open to work"        # accent badge — remove line to hide it entirely
+  name      = "Your Name"           # single or multi-word both work; last word is set in serif
+  role      = "Job Title"
+  available = "Open to work"        # pill badge with status dot — remove line to hide
   bio       = "One or two sentences. Personal voice works best here."
-  email     = "you@example.com"
-  linkedin  = "https://linkedin.com/in/your-handle"
-  github    = "https://github.com/your-handle"
+  email     = "you@example.com"     # optional — link hidden if omitted
+  linkedin  = "https://linkedin.com/in/your-handle"   # optional
+  github    = "https://github.com/your-handle"        # optional
   # avatar      = "/img/photo.jpg"  # optional — initials shown if omitted
   # description = "..."             # optional — overrides meta description
+  # favicon     = "/img/favicon.png"
+  # location    = "Sydney, Australia"   # mono line under the role
+  # labLabel    = "The Lab"             # heading of the lab section
+  # footerNote  = "Built with Hugo."    # left side of the footer
 ```
+
+Sections render only when their data file exists. Delete a data file and its section disappears.
 
 ### `content/_index.md`
 
@@ -92,54 +97,52 @@ Hugo requires this file to invoke the homepage template. Create it with empty fr
 
 ## Data files
 
-All content lives in `data/`. See [`exampleSite/data/`](exampleSite/data/) for full working samples with inline comments.
-
-### `data/skills_support.yaml` — IT Support tab
-
-`category` is the left column label. `skills` is free text in the right column. Use `·` (middle dot, U+00B7) to separate items.
-
-```yaml
-- category: Windows & Desktop
-  skills: "Windows 10/11 · Windows Server · OS imaging · Hardware & printer support"
-
-- category: Microsoft Cloud
-  skills: "Microsoft 365 · Exchange Online · Azure AD · Intune · MFA"
-```
-
-### `data/skills_homelab.yaml` — Homelab tab
-
-Same structure, rendered in monospace. Suits tool names and stack components.
-
-```yaml
-- category: Containers
-  skills: "Docker · k3s · Helm"
-
-- category: Networking
-  skills: "OPNsense · VLANs · Pi-hole · Traefik"
-```
+All content lives in `data/`. See [`exampleSite/data/`](exampleSite/data/) for working samples.
 
 ### `data/experience.yaml`
 
-Each entry is a heading row (title + date) with a bullet list below.
+Rendered as a timeline. Each entry is a heading row (title + date) with bullets below.
 
 ```yaml
-- title: IT Support Lab
-  date: Ongoing
+- title: IT Internship — Some Company
+  date: "Nov 2025 – Feb 2026"
   items:
-    - "Built Active Directory environment with 50+ simulated users, DNS, DHCP, GPO"
-    - "Worked through 40+ simulated help desk tickets"
-
-- title: Customer Service — Retail
-  date: "2021 – 2024"
-  items:
-    - "High-volume customer interactions requiring patience and clear communication"
+    - "What you did, action-verb first"
+    - "Another concrete line"
 ```
 
-`date` is a plain string — use a year range, `"Ongoing"`, `"Mar 2023"`, whatever fits.
+`date` is a plain string: a year range, `"Ongoing"`, whatever fits.
+
+### `data/lab.yaml`
+
+The proof-of-work section. An intro paragraph plus entries that say what runs, in plain language a recruiter can follow.
+
+```yaml
+intro: "One or two sentences framing the lab: what it is, how long it has run, why it exists."
+
+items:
+  - name: Network segmentation
+    what: "What is actually running, in plain language. End with what it shows about you, as prose."
+    stack: [OPNsense, VLANs, Pi-hole]
+```
+
+`stack` is optional per entry. Rename the section heading with the `labLabel` param.
+
+### `data/skills.yaml`
+
+One merged table. `category` is the mono left column, `skills` is free text. Use `·` (middle dot, U+00B7) to separate items.
+
+```yaml
+- category: Windows & Desktop
+  skills: "Windows 10/11 · Windows Server · printer support · RDP"
+
+- category: Networking
+  skills: "TCP/IP · VLANs · DNS / DHCP · VPN"
+```
 
 ### `data/certifications.yaml`
 
-Two columns: cert name on the left, org or year on the right.
+Two columns: name on the left, org or year on the right.
 
 ```yaml
 - name: CompTIA A+
@@ -147,22 +150,7 @@ Two columns: cert name on the left, org or year on the right.
 
 - name: Bachelor of Information Technology
   org: "2024"
-
-- name: Some Training Program
-  org: "Training completed"
 ```
-
-### `data/projects.yaml`
-
-Each project is a card with a name, description paragraph, and tag chips.
-
-```yaml
-- name: Home Network
-  description: "VLAN-segmented network — OPNsense, 802.1Q trunking, Pi-hole DNS."
-  tags: [OPNsense, VLANs, Pi-hole]
-```
-
-`tags` renders as small monospace chips. Keep them short — one word or hyphenated.
 
 ---
 
@@ -178,6 +166,12 @@ If `avatar` is not set, a circle with your initials (derived from `params.name`)
 
 ---
 
+## Printing
+
+The theme ships a print stylesheet: plain white background, no animation, sections kept whole across page breaks. Ctrl+P produces a usable paper CV.
+
+---
+
 ## Netlify deployment
 
 Set this environment variable in Netlify site settings so the theme submodule is pulled during build:
@@ -186,18 +180,18 @@ Set this environment variable in Netlify site settings so the theme submodule is
 |---|---|
 | `GIT_SUBMODULE_STRATEGY` | `recursive` |
 
-Use [`exampleSite/netlify.toml`](exampleSite/netlify.toml) as your `netlify.toml` — it pins the Hugo version and sets the build command.
+Use [`exampleSite/netlify.toml`](exampleSite/netlify.toml) as your `netlify.toml`. It pins the Hugo version and sets the build command.
 
 ---
 
 ## Customisation
 
-Colors and radius are CSS custom properties at the top of `static/css/style.css`. Fork the theme and edit them directly.
+Colors and type are CSS custom properties at the top of `static/css/style.css`. Fork the theme and edit them directly.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `--accent` | `#c45c1a` | Badges, labels, active nav |
-| `--card-bg` | `#181512` | Right content panel |
-| `--panel-bg` | `#141210` | Left sidebar |
-| `--page-bg` | `#0c0a09` | Page background |
-| `--radius` | `14px` | Card corner radius |
+| `--paper` | `#ede8e0` | Page background (warm paper) |
+| `--ink` | `#211d18` | Headings and primary text |
+| `--mid` | `#554e43` | Body text |
+| `--muted` | `#8a8175` | Meta text, dates, labels |
+| `--accent` | `#ab4a10` | Rules, numbering, badges, hovers |
